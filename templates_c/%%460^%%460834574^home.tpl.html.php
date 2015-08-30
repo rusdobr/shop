@@ -145,4 +145,4 @@ $this->_sections['j']['last']       = ($this->_sections['j']['iteration'] == $th
 </td>
 <?php if (!(( $this->_sections['i']['index']+1 ) % 2)): ?></tr><?php endif; ?>
 <?php endfor; endif; ?>
-</table>
+</table>

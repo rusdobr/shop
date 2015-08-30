@@ -17,24 +17,24 @@
 		<table cellpadding="3">
 		<tr>
 		 <td><img src="images/backend/custord_new_orders_32.gif"></td>
-		 <td class="big"><b><u>Заказы</u></b></td>
+		 <td class="big"><b><u>Р—Р°РєР°Р·С‹</u></b></td>
 		</tr>
 		<tr>
 		 <td>&nbsp;</td>
 		 <td>
 
 			<table style="margin-left: 5px;" cellpadding="0">
-			<tr><td>Сегодня:</td><td><?php if ($this->_tpl_vars['totals']['orders_today'] > 0): ?><b><?php endif;  echo $this->_tpl_vars['totals']['orders_today']; ?>
- заказ(ов) (<?php echo $this->_tpl_vars['totals']['revenue_today']; ?>
+			<tr><td>РЎРµРіРѕРґРЅСЏ:</td><td><?php if ($this->_tpl_vars['totals']['orders_today'] > 0): ?><b><?php endif;  echo $this->_tpl_vars['totals']['orders_today']; ?>
+ Р·Р°РєР°Р·(РѕРІ) (<?php echo $this->_tpl_vars['totals']['revenue_today']; ?>
 )<?php if ($this->_tpl_vars['totals']['orders_today'] > 0): ?></b><?php endif; ?></td></tr>
-			<tr><td>Вчера:</td><td><?php echo $this->_tpl_vars['totals']['orders_yesterday']; ?>
- заказ(ов) (<?php echo $this->_tpl_vars['totals']['revenue_yesterday']; ?>
+			<tr><td>Р’С‡РµСЂР°:</td><td><?php echo $this->_tpl_vars['totals']['orders_yesterday']; ?>
+ Р·Р°РєР°Р·(РѕРІ) (<?php echo $this->_tpl_vars['totals']['revenue_yesterday']; ?>
 )</td></tr>
-			<tr><td>В этом месяце:</td><td><?php echo $this->_tpl_vars['totals']['orders_thismonth']; ?>
- заказ(ов) (<?php echo $this->_tpl_vars['totals']['revenue_thismonth']; ?>
+			<tr><td>Р’ СЌС‚РѕРј РјРµСЃСЏС†Рµ:</td><td><?php echo $this->_tpl_vars['totals']['orders_thismonth']; ?>
+ Р·Р°РєР°Р·(РѕРІ) (<?php echo $this->_tpl_vars['totals']['revenue_thismonth']; ?>
 )</td></tr>
-			<tr><td>Всего:</td><td><?php echo $this->_tpl_vars['totals']['orders']; ?>
- заказ(ов) (<?php echo $this->_tpl_vars['totals']['revenue']; ?>
+			<tr><td>Р’СЃРµРіРѕ:</td><td><?php echo $this->_tpl_vars['totals']['orders']; ?>
+ Р·Р°РєР°Р·(РѕРІ) (<?php echo $this->_tpl_vars['totals']['revenue']; ?>
 )</td></tr>
 			</table>
 
@@ -49,17 +49,17 @@
 		<table cellpadding="3">
 		<tr>
 		 <td><img src="images/backend/catalog_products_categories_32.gif"></td>
-		 <td class="big"><b><u>Продукты</u></b></td>
+		 <td class="big"><b><u>РџСЂРѕРґСѓРєС‚С‹</u></b></td>
 		</tr>
 		<tr>
 		 <td>&nbsp;</td>
 		 <td>
 
-			Общее количество продуктов: <b><?php echo $this->_tpl_vars['totals']['products']; ?>
+			РћР±С‰РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРѕРґСѓРєС‚РѕРІ: <b><?php echo $this->_tpl_vars['totals']['products']; ?>
 </b><br />
-			Из них продаются<br />(доступны в пользовательской части): <b><?php echo $this->_tpl_vars['totals']['products_enabled']; ?>
+			РР· РЅРёС… РїСЂРѕРґР°СЋС‚СЃСЏ<br />(РґРѕСЃС‚СѓРїРЅС‹ РІ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРѕР№ С‡Р°СЃС‚Рё): <b><?php echo $this->_tpl_vars['totals']['products_enabled']; ?>
 </b><br />
-			Категорий продуктов: <b><?php echo $this->_tpl_vars['totals']['categories']; ?>
+			РљР°С‚РµРіРѕСЂРёР№ РїСЂРѕРґСѓРєС‚РѕРІ: <b><?php echo $this->_tpl_vars['totals']['categories']; ?>
 </b><br /><br />
 
 		 </td>
