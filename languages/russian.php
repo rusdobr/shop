@@ -154,6 +154,7 @@ define('ADMIN_PRODUCT_BIGPICTURE', 'Большая фотография');
 define('ADMIN_PRODUCT_DESC', 'Описание');
 define('ADMIN_PRODUCT_BRIEF_DESC', 'Краткое описание');
 define('ADMIN_PRODUCT_SOLD', 'Продано');
+define('ADMIN_PRODUCT_AMOUNT', 'Количество');
 define('CUSTOMER_EMAIL', 'Email:');
 define('CUSTOMER_FIRST_NAME', 'Имя:');
 define('CUSTOMER_LAST_NAME', 'Фамилия:');

@@ -51,7 +51,7 @@
 		<table border="0" cellspacing="0" cellpadding="5" width="90%">
 		<tr bgcolor="#DAD5A3" align="center"><td width="1%">{$smarty.const.ADMIN_ENABLED}</td><td>{$smarty.const.ADMIN_PRODUCT_CODE}</td><td>{$smarty.const.ADMIN_PRODUCT_NAME}</td><td>{$smarty.const.ADMIN_PRODUCT_RATING}</td><td>{$smarty.const.ADMIN_PRODUCT_PRICE}, {$currency_iso_3}</td>
 		<td>{$smarty.const.ADMIN_PRODUCT_INSTOCK}</td><td>{$smarty.const.ADMIN_PRODUCT_PICTURE}</td><td>{$smarty.const.ADMIN_PRODUCT_BIGPICTURE}</td>
-		<td>{$smarty.const.ADMIN_PRODUCT_THUMBNAIL}</td><td width=1%>&nbsp;</td><td width=1%>&nbsp;</td></tr>
+		<td>{$smarty.const.ADMIN_PRODUCT_THUMBNAIL}</td><td>{$smarty.const.ADMIN_PRODUCT_AMOUNT}</td><td width=1%>&nbsp;</td><td width=1%>&nbsp;</td></tr>
 
 		{section name=i loop=$products}
 
@@ -89,7 +89,9 @@
 			<td align=center>
 			{if $products[i][7] ne ""}{$smarty.const.ANSWER_YES}{else}<font color=red>{$smarty.const.ANSWER_NO}</font>{/if}
 			</td>
-
+            <td align=center>
+                <input type=text name=amount_{$products[i][0]} size=5 value={$products[i][11]}>
+            </td>
 			<td align=center>
 			 {if $products[i][5] ne ""}
 				<a href="admin.php?dpt=catalog&sub=special&new_offer={$products[i][0]}"><img src="images/admin_special_offer.gif" border=0 alt="{$smarty.const.ADMIN_ADD_SPECIAL_OFFERS}"></a>

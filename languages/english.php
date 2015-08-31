@@ -157,6 +157,7 @@ define('ADMIN_PRODUCT_BIGPICTURE', 'Enlarged picture');
 define('ADMIN_PRODUCT_DESC', 'Description');
 define('ADMIN_PRODUCT_BRIEF_DESC', 'Brief description');
 define('ADMIN_PRODUCT_SOLD', 'Sold');
+define('ADMIN_PRODUCT_AMOUNT', 'Amount');
 define('CUSTOMER_EMAIL', 'Email:');
 define('CUSTOMER_FIRST_NAME', 'First name:');
 define('CUSTOMER_LAST_NAME', 'Last name:');

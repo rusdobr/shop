@@ -34,6 +34,13 @@ if(!defined('WORKING_THROUGH_ADMIN_SCRIPT'))
 				db_query("UPDATE ".PRODUCTS_TABLE." SET Price='$temp' WHERE productID=".str_replace("price_","",$key)) or die (db_error());
 			  }
 
+              if (strstr($key, "amount_")) //update amount
+              {
+                    $temp = $val;
+                    $temp = round($temp*100)/100;
+                    db_query("UPDATE ".PRODUCTS_TABLE." SET amount='$temp' WHERE productID=".str_replace("amount_","",$key)) or die (db_error());
+              }
+
 			  if (strstr($key, "enable_")) //enable products
 			  {
 				db_query("UPDATE ".PRODUCTS_TABLE." SET enabled = 1 WHERE productID=".str_replace("enable_","",$key)) or die (db_error());
@@ -90,7 +97,7 @@ if(!defined('WORKING_THROUGH_ADMIN_SCRIPT'))
 		$smarty->assign("category_name", $row[0]);
 
 		//get all products
-		$q = db_query("SELECT productID, name, customers_rating, Price, in_stock, picture, big_picture, thumbnail, items_sold, enabled, product_code FROM ".PRODUCTS_TABLE." WHERE categoryID='$categoryID'  ORDER BY name;") or die (db_error());
+		$q = db_query("SELECT productID, name, customers_rating, Price, in_stock, picture, big_picture, thumbnail, items_sold, enabled, product_code, amount FROM ".PRODUCTS_TABLE." WHERE categoryID='$categoryID'  ORDER BY name;") or die (db_error());
 		$result = array();
 		$i=0;
 		while ($row = db_fetch_row($q)) $result[$i++] = $row;

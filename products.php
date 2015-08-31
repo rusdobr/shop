@@ -51,9 +51,14 @@
 		if (!isset($_POST["price"]) || !$_POST["price"] || $_POST["price"] < 0)
 			$_POST["price"] = 0; //price can not be negative
 
-		if (!isset($_POST["name"]) || trim($_POST["name"])=="") $_POST["name"] = "not defined";
+        if (!isset($_POST["amount"]) || !$_POST["amount"] || $_POST["amount"] < 0)
+            $_POST["amount"] = 1; //price can not be negative
+
+        if (!isset($_POST["name"]) || trim($_POST["name"])=="") $_POST["name"] = "not defined";
 
 		$instock = (isset($_POST["in_stock"])) ? 1 : 0;
+
+        $amount = (isset($_POST["amount"])) ? $_POST["amount"] : 0;
 
 		if ($_POST["save_product"]) { //if $_POST["save_product"] != 0 then update item
 
@@ -63,7 +68,7 @@
 
 			//generating query
 
-			$s = "UPDATE ".PRODUCTS_TABLE." SET categoryID='".$_POST["categoryID"]."', name='".$_POST["name"]."', Price='".$_POST["price"]."', description='".$_POST["description"]."', in_stock=".$instock.", customers_rating='".$_POST["rating"]."', brief_description='".$_POST["brief_description"]."', list_price='".$_POST["list_price"]."', product_code='".$_POST["product_code"]."'";
+			$s = "UPDATE ".PRODUCTS_TABLE." SET categoryID='".$_POST["categoryID"]."', name='".$_POST["name"]."', Price='".$_POST["price"]."', description='".$_POST["description"]."', in_stock=".$instock.", customers_rating='".$_POST["rating"]."', brief_description='".$_POST["brief_description"]."', list_price='".$_POST["list_price"]."', product_code='".$_POST["product_code"]."', amount='".$_POST["amount"]."'";
 
 			$s1 = "";
 
@@ -93,7 +98,7 @@
 		else
 		{
 			//add new product
-			db_query("INSERT INTO ".PRODUCTS_TABLE." (categoryID, name, description, customers_rating, Price, in_stock, customer_votes, items_sold, enabled, brief_description, list_price, product_code, picture, thumbnail, big_picture) VALUES ('".$_POST["categoryID"]."','".$_POST["name"]."','".$_POST["description"]."', 0, '".$_POST["price"]."', ".$instock.", 0, 0, 1, '".$_POST["brief_description"]."', '".$_POST["list_price"]."', '".$_POST["product_code"]."','','','');") or die (db_error());
+			db_query("INSERT INTO ".PRODUCTS_TABLE." (categoryID, name, description, customers_rating, Price, in_stock, customer_votes, items_sold, enabled, brief_description, list_price, product_code, picture, thumbnail, big_picture, amount) VALUES ('".$_POST["categoryID"]."','".$_POST["name"]."','".$_POST["description"]."', 0, '".$_POST["price"]."', ".$instock.", 0, 0, 1, '".$_POST["brief_description"]."', '".$_POST["list_price"]."', '".$_POST["product_code"]."','','',''," . $amount . ");") or die (db_error());
 			$pid = db_insert_id();
 
 			$dont_update = 1; //don't update product
@@ -182,7 +187,7 @@
 		if ($_GET["productID"])
 		{
 
-			$q = db_query("SELECT categoryID, name, description, customers_rating, Price, picture, in_stock, thumbnail, big_picture, brief_description, list_price, product_code FROM ".PRODUCTS_TABLE." WHERE productID='".$_GET["productID"]."'") or die (db_error());
+			$q = db_query("SELECT categoryID, name, description, customers_rating, Price, picture, in_stock, thumbnail, big_picture, brief_description, list_price, product_code, amount FROM ".PRODUCTS_TABLE." WHERE productID='".$_GET["productID"]."'") or die (db_error());
 			$row = db_fetch_row($q);
  			if (!$row) //product wasn't found
 			{
@@ -315,7 +320,10 @@ function open_window(link,w,h) //opens new window
 <td align=right><?php echo ADMIN_PRODUCT_LISTPRICE;?>, <?php echo $currency_iso_3; ?><br>(<?php echo STRING_NUMBER_ONLY;?>):</td>
 <td><input type="text" name="list_price" value=<?php echo $row[10]; ?>></td>
 </tr>
-
+    <tr>
+        <td align=right><?php echo ADMIN_PRODUCT_AMOUNT;?>, <br>(<?php echo STRING_NUMBER_ONLY;?>):</td>
+        <td><input type="text" name="amount" value=<?php echo $row[12]; ?>></td>
+    </tr>
 <?php
 	if ($row[6]<0) $is = 0;
 	else $is = $row[6];
@@ -382,6 +390,11 @@ function open_window(link,w,h) //opens new window
 <td align=right><?php echo ADMIN_PRODUCT_BRIEF_DESC;?><br>(HTML):</td>
 <td><textarea name="brief_description" rows=7 cols=40><?php echo str_replace("<","&lt;",$row[9]); ?></textarea></td>
 </tr>
+
+    <tr>
+        <td align=right><?php echo ADMIN_PRODUCT_BRIEF_DESC;?><br>(HTML):</td>
+        <td><textarea name="brief_description" rows=7 cols=40><?php echo str_replace("<","&lt;",$row[9]); ?></textarea></td>
+    </tr>
 
 </table>
 
