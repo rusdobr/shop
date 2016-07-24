@@ -1,9 +1,9 @@
 <?php
 	//Shop-Script FREE database tables
-	define('PRODUCTS_TABLE', 'products');
-	define('ORDERS_TABLE', 'orders');
-	define('ORDERED_CARTS_TABLE', 'ordered_carts');
-	define('CATEGORIES_TABLE', 'categories');
-	define('SPECIAL_OFFERS_TABLE', 'special_offers');
+	define('PRODUCTS_TABLE', 'product');
+	define('ORDERS_TABLE', 'cart');
+	define('ORDERED_CARTS_TABLE', 'cart_product');
+	define('CATEGORIES_TABLE', 'category');
+	define('SPECIAL_OFFERS_TABLE', 'special_offer');
 
 ?>

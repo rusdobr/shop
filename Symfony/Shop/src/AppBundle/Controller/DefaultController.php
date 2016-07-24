@@ -2,7 +2,9 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Product;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -15,7 +17,7 @@ class DefaultController extends Controller
     {
         $productId = 1;
         $products = $this->getDoctrine()
-            ->getRepository('AppBundle:Products')
+            ->getRepository('AppBundle:Product')
             ->find($productId);
         print_r($products->getName() .'</br>');
         // replace this example code with whatever you need
@@ -24,15 +26,14 @@ class DefaultController extends Controller
         ]);
     }
     /**
-     * @Route("/{productId}", name="product")
+     * @Route("/product/{id}", name="product")
+     * @ParamConverter("product", class="AppBundle:Product")
      */
-    public function productAction($productId)
+    public function productAction(Product $product)
     {
-        /**
-         * AppBundle\Entity\Products
-         */
+        /*
         $product = $this->getDoctrine()
-            ->getRepository('AppBundle:Products')
+            ->getRepository('AppBundle:Product')
             ->find($productId);
 
         if (!$product) {
@@ -40,6 +41,7 @@ class DefaultController extends Controller
                 'No product found for id ' . $productId
             );
         }
+        */
         print($product->getName() .'</br>');
         print($product->getCategory()->getName() . '</br>');
         foreach($product->getCategory()->getProducts() as $product) {

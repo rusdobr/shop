@@ -5,13 +5,22 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Orders
+ * Cart
  *
- * @ORM\Table(name="orders")
+ * @ORM\Table(name="cart")
  * @ORM\Entity
  */
-class Orders
+class Cart
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="orderID", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $orderid;
+
     /**
      * @var \DateTime
      *
@@ -82,23 +91,24 @@ class Orders
      */
     private $custPhone;
 
+
+
     /**
-     * @var integer
+     * Get orderid
      *
-     * @ORM\Column(name="orderID", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @return integer
      */
-    private $orderid;
-
-
+    public function getOrderid()
+    {
+        return $this->orderid;
+    }
 
     /**
      * Set orderTime
      *
      * @param \DateTime $orderTime
      *
-     * @return Orders
+     * @return Cart
      */
     public function setOrderTime($orderTime)
     {
@@ -122,7 +132,7 @@ class Orders
      *
      * @param string $custFirstname
      *
-     * @return Orders
+     * @return Cart
      */
     public function setCustFirstname($custFirstname)
     {
@@ -146,7 +156,7 @@ class Orders
      *
      * @param string $custLastname
      *
-     * @return Orders
+     * @return Cart
      */
     public function setCustLastname($custLastname)
     {
@@ -170,7 +180,7 @@ class Orders
      *
      * @param string $custEmail
      *
-     * @return Orders
+     * @return Cart
      */
     public function setCustEmail($custEmail)
     {
@@ -194,7 +204,7 @@ class Orders
      *
      * @param string $custCountry
      *
-     * @return Orders
+     * @return Cart
      */
     public function setCustCountry($custCountry)
     {
@@ -218,7 +228,7 @@ class Orders
      *
      * @param string $custZip
      *
-     * @return Orders
+     * @return Cart
      */
     public function setCustZip($custZip)
     {
@@ -242,7 +252,7 @@ class Orders
      *
      * @param string $custState
      *
-     * @return Orders
+     * @return Cart
      */
     public function setCustState($custState)
     {
@@ -266,7 +276,7 @@ class Orders
      *
      * @param string $custCity
      *
-     * @return Orders
+     * @return Cart
      */
     public function setCustCity($custCity)
     {
@@ -290,7 +300,7 @@ class Orders
      *
      * @param string $custAddress
      *
-     * @return Orders
+     * @return Cart
      */
     public function setCustAddress($custAddress)
     {
@@ -314,7 +324,7 @@ class Orders
      *
      * @param string $custPhone
      *
-     * @return Orders
+     * @return Cart
      */
     public function setCustPhone($custPhone)
     {
@@ -331,15 +341,5 @@ class Orders
     public function getCustPhone()
     {
         return $this->custPhone;
-    }
-
-    /**
-     * Get orderid
-     *
-     * @return integer
-     */
-    public function getOrderid()
-    {
-        return $this->orderid;
     }
 }

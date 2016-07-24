@@ -5,13 +5,22 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Products
+ * Product
  *
- * @ORM\Table(name="products")
+ * @ORM\Table(name="product")
  * @ORM\Entity
  */
-class Products
+class Product
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="productID", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $productid;
+
     /**
      * @var integer
      *
@@ -124,27 +133,29 @@ class Products
      */
     private $amount;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="productID", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $productid;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Categories", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
      * @ORM\JoinColumn(name="categoryID", referencedColumnName="categoryID")
      */
     private $category;
+
+    /**
+     * Get productid
+     *
+     * @return integer
+     */
+    public function getProductid()
+    {
+        return $this->productid;
+    }
 
     /**
      * Set categoryid
      *
      * @param integer $categoryid
      *
-     * @return Products
+     * @return Product
      */
     public function setCategoryid($categoryid)
     {
@@ -168,7 +179,7 @@ class Products
      *
      * @param string $name
      *
-     * @return Products
+     * @return Product
      */
     public function setName($name)
     {
@@ -192,7 +203,7 @@ class Products
      *
      * @param string $description
      *
-     * @return Products
+     * @return Product
      */
     public function setDescription($description)
     {
@@ -216,7 +227,7 @@ class Products
      *
      * @param float $customersRating
      *
-     * @return Products
+     * @return Product
      */
     public function setCustomersRating($customersRating)
     {
@@ -240,7 +251,7 @@ class Products
      *
      * @param float $price
      *
-     * @return Products
+     * @return Product
      */
     public function setPrice($price)
     {
@@ -264,7 +275,7 @@ class Products
      *
      * @param string $picture
      *
-     * @return Products
+     * @return Product
      */
     public function setPicture($picture)
     {
@@ -288,7 +299,7 @@ class Products
      *
      * @param integer $inStock
      *
-     * @return Products
+     * @return Product
      */
     public function setInStock($inStock)
     {
@@ -312,7 +323,7 @@ class Products
      *
      * @param string $thumbnail
      *
-     * @return Products
+     * @return Product
      */
     public function setThumbnail($thumbnail)
     {
@@ -336,7 +347,7 @@ class Products
      *
      * @param integer $customerVotes
      *
-     * @return Products
+     * @return Product
      */
     public function setCustomerVotes($customerVotes)
     {
@@ -360,7 +371,7 @@ class Products
      *
      * @param integer $itemsSold
      *
-     * @return Products
+     * @return Product
      */
     public function setItemsSold($itemsSold)
     {
@@ -384,7 +395,7 @@ class Products
      *
      * @param string $bigPicture
      *
-     * @return Products
+     * @return Product
      */
     public function setBigPicture($bigPicture)
     {
@@ -408,7 +419,7 @@ class Products
      *
      * @param integer $enabled
      *
-     * @return Products
+     * @return Product
      */
     public function setEnabled($enabled)
     {
@@ -432,7 +443,7 @@ class Products
      *
      * @param string $briefDescription
      *
-     * @return Products
+     * @return Product
      */
     public function setBriefDescription($briefDescription)
     {
@@ -456,7 +467,7 @@ class Products
      *
      * @param float $listPrice
      *
-     * @return Products
+     * @return Product
      */
     public function setListPrice($listPrice)
     {
@@ -480,7 +491,7 @@ class Products
      *
      * @param string $productCode
      *
-     * @return Products
+     * @return Product
      */
     public function setProductCode($productCode)
     {
@@ -504,7 +515,7 @@ class Products
      *
      * @param float $amount
      *
-     * @return Products
+     * @return Product
      */
     public function setAmount($amount)
     {
@@ -524,23 +535,13 @@ class Products
     }
 
     /**
-     * Get productid
-     *
-     * @return integer
-     */
-    public function getProductid()
-    {
-        return $this->productid;
-    }
-
-    /**
      * Set category
      *
-     * @param \AppBundle\Entity\Categories $category
+     * @param \AppBundle\Entity\Category $category
      *
-     * @return Products
+     * @return Product
      */
-    public function setCategory(\AppBundle\Entity\Categories $category = null)
+    public function setCategory(\AppBundle\Entity\Category $category = null)
     {
         $this->category = $category;
 
@@ -550,7 +551,7 @@ class Products
     /**
      * Get category
      *
-     * @return \AppBundle\Entity\Categories
+     * @return \AppBundle\Entity\Category
      */
     public function getCategory()
     {

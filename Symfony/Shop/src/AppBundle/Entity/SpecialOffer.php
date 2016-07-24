@@ -5,13 +5,22 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * SpecialOffers
+ * SpecialOffer
  *
- * @ORM\Table(name="special_offers")
+ * @ORM\Table(name="special_offer")
  * @ORM\Entity
  */
-class SpecialOffers
+class SpecialOffer
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="offerID", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $offerid;
+
     /**
      * @var integer
      *
@@ -26,23 +35,24 @@ class SpecialOffers
      */
     private $sortOrder;
 
+
+
     /**
-     * @var integer
+     * Get offerid
      *
-     * @ORM\Column(name="offerID", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @return integer
      */
-    private $offerid;
-
-
+    public function getOfferid()
+    {
+        return $this->offerid;
+    }
 
     /**
      * Set productid
      *
      * @param integer $productid
      *
-     * @return SpecialOffers
+     * @return SpecialOffer
      */
     public function setProductid($productid)
     {
@@ -66,7 +76,7 @@ class SpecialOffers
      *
      * @param integer $sortOrder
      *
-     * @return SpecialOffers
+     * @return SpecialOffer
      */
     public function setSortOrder($sortOrder)
     {
@@ -83,15 +93,5 @@ class SpecialOffers
     public function getSortOrder()
     {
         return $this->sortOrder;
-    }
-
-    /**
-     * Get offerid
-     *
-     * @return integer
-     */
-    public function getOfferid()
-    {
-        return $this->offerid;
     }
 }

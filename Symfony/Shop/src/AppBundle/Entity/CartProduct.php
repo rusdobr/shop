@@ -5,13 +5,31 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * OrderedCarts
+ * CartProduct
  *
- * @ORM\Table(name="ordered_carts")
+ * @ORM\Table(name="cart_product")
  * @ORM\Entity
  */
-class OrderedCarts
+class CartProduct
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="productID", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $productid;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="orderID", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $orderid;
+
     /**
      * @var string
      *
@@ -33,104 +51,14 @@ class OrderedCarts
      */
     private $quantity;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="productID", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     */
-    private $productid;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="orderID", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     */
-    private $orderid;
-
-
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return OrderedCarts
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set price
-     *
-     * @param float $price
-     *
-     * @return OrderedCarts
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    /**
-     * Get price
-     *
-     * @return float
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * Set quantity
-     *
-     * @param integer $quantity
-     *
-     * @return OrderedCarts
-     */
-    public function setQuantity($quantity)
-    {
-        $this->quantity = $quantity;
-
-        return $this;
-    }
-
-    /**
-     * Get quantity
-     *
-     * @return integer
-     */
-    public function getQuantity()
-    {
-        return $this->quantity;
-    }
 
     /**
      * Set productid
      *
      * @param integer $productid
      *
-     * @return OrderedCarts
+     * @return CartProduct
      */
     public function setProductid($productid)
     {
@@ -154,7 +82,7 @@ class OrderedCarts
      *
      * @param integer $orderid
      *
-     * @return OrderedCarts
+     * @return CartProduct
      */
     public function setOrderid($orderid)
     {
@@ -171,5 +99,77 @@ class OrderedCarts
     public function getOrderid()
     {
         return $this->orderid;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return CartProduct
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set price
+     *
+     * @param float $price
+     *
+     * @return CartProduct
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set quantity
+     *
+     * @param integer $quantity
+     *
+     * @return CartProduct
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Get quantity
+     *
+     * @return integer
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
     }
 }

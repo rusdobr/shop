@@ -6,13 +6,22 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Categories
+ * Category
  *
- * @ORM\Table(name="categories")
+ * @ORM\Table(name="category")
  * @ORM\Entity
  */
-class Categories
+class Category
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="categoryID", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $categoryid;
+
     /**
      * @var string
      *
@@ -56,16 +65,7 @@ class Categories
     private $productsCountAdmin;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="categoryID", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $categoryid;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Products", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="category")
      */
     private $products;
 
@@ -74,12 +74,23 @@ class Categories
         $this->products = new ArrayCollection();
     }
 
+
+    /**
+     * Get categoryid
+     *
+     * @return integer
+     */
+    public function getCategoryid()
+    {
+        return $this->categoryid;
+    }
+
     /**
      * Set name
      *
      * @param string $name
      *
-     * @return Categories
+     * @return Category
      */
     public function setName($name)
     {
@@ -103,7 +114,7 @@ class Categories
      *
      * @param integer $parent
      *
-     * @return Categories
+     * @return Category
      */
     public function setParent($parent)
     {
@@ -127,7 +138,7 @@ class Categories
      *
      * @param integer $productsCount
      *
-     * @return Categories
+     * @return Category
      */
     public function setProductsCount($productsCount)
     {
@@ -151,7 +162,7 @@ class Categories
      *
      * @param string $description
      *
-     * @return Categories
+     * @return Category
      */
     public function setDescription($description)
     {
@@ -175,7 +186,7 @@ class Categories
      *
      * @param string $picture
      *
-     * @return Categories
+     * @return Category
      */
     public function setPicture($picture)
     {
@@ -199,7 +210,7 @@ class Categories
      *
      * @param integer $productsCountAdmin
      *
-     * @return Categories
+     * @return Category
      */
     public function setProductsCountAdmin($productsCountAdmin)
     {
@@ -219,23 +230,13 @@ class Categories
     }
 
     /**
-     * Get categoryid
-     *
-     * @return integer
-     */
-    public function getCategoryid()
-    {
-        return $this->categoryid;
-    }
-
-    /**
      * Add product
      *
-     * @param \AppBundle\Entity\Products $product
+     * @param \AppBundle\Entity\Product $product
      *
-     * @return Categories
+     * @return Category
      */
-    public function addProduct(\AppBundle\Entity\Products $product)
+    public function addProduct(\AppBundle\Entity\Product $product)
     {
         $this->products[] = $product;
 
@@ -245,9 +246,9 @@ class Categories
     /**
      * Remove product
      *
-     * @param \AppBundle\Entity\Products $product
+     * @param \AppBundle\Entity\Product $product
      */
-    public function removeProduct(\AppBundle\Entity\Products $product)
+    public function removeProduct(\AppBundle\Entity\Product $product)
     {
         $this->products->removeElement($product);
     }
