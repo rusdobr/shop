@@ -33,7 +33,7 @@ function get_current_time() //get current date and time as a string
 
 function ShowNavigator($a, $offset, $q, $path, &$out)
 { 	
-		//shows navigator [prev] 1 2 3 4 … [next]
+		//shows navigator [prev] 1 2 3 4 [next]
 		//$a - count of elements in the array, which is being navigated
 		//$offset - current offset in array (showing elements [$offset ... $offset+$q])
 		//$q - quantity of items per page
