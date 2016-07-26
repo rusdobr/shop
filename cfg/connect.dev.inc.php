@@ -8,7 +8,5 @@
 	define('ADMIN_LOGIN', 'YWRtaW4='); //administrator's login
 	define('ADMIN_PASS', '01e20b61d05bb6b42840997233579e08'); //administrator's login
 
-	//database tables
-	include("./cfg/tables.inc.php");
 
 ?>
