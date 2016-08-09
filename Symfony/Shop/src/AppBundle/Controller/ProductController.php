@@ -32,8 +32,11 @@ class ProductController extends Controller
      */
     public function newAction(Request $request)
     {
-        $data = [];
-        $this->getCategories($data, 0);
+        $data = [
+            'categories' => [],
+            'products' => []
+        ];
+        $this->getCategories($data['categories'], 0);
         $response = (new JsonResponse($data))->setEncodingOptions(JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT);
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Content-Type', 'application/json; charset=utf-8');
@@ -41,24 +44,54 @@ class ProductController extends Controller
         return $response;
     }
 
-    function getCategories(&$cnt, $parentCategory){
+    function getCategories(&$cnt, $parentCategory)
+    {
         $categories = $this->getDoctrine()
             ->getRepository('AppBundle:Category')
             ->findBy(
-                array('parent' => $parentCategory)
+                ['parent' => $parentCategory],
+                ['name' => 'ASC']
             );
         $me = $this;
-        array_walk($categories, function (Category $category) use (&$cnt, $me){
+        $protect_hash = []; // protect from recurcive nether-ending circle
+        array_walk($categories, function (Category $category) use (&$cnt, $me, &$protect_hash) {
+            $categoryId = $category->getCategoryid();
+            if (isset($protect_hash[$categoryId])) {
+                return;
+            }
+            $protect_hash[$categoryId] = true;
             $data = [
-                'name'  => $category->getName(),
-                'description'   => $category->getDescription(),
-                'id'    => $category->getCategoryid(),
+                'name' => $category->getName(),
+                'id' => $category->getCategoryid(),
                 'categories' => [],
-                'products'  => []
+                'products' => $me->getProductsForCatalgue($category->getCategoryid())
             ];
-            $me->getCategories($data['categories'], $category->getCategoryid());
-            $cnt[]= $data;
+            $me->getCategories($data['categories'], $categoryId);
+            $cnt[] = $data;
         });
+    }
+
+    private function getProductsForCatalgue($categoryId)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT p
+            FROM AppBundle:Product p
+            WHERE p.price > 0
+             AND p.categoryid = :categoryID
+            AND p.enabled = 1
+            ORDER BY p.name ASC'
+        )->setParameter('categoryID', $categoryId);
+        $products = $query->getResult();
+        $result = [];
+        array_walk($products, function (Product $product) use (&$result) {
+            $result[] = [
+                'id' => $product->getProductid(),
+                'name' => $product->getName(),
+                'price' => $product->getPrice()
+            ];
+        });
+        return $result;
     }
 
 }
