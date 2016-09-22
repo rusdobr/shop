@@ -78,7 +78,7 @@ function pricessCategories($parent, $level)
 function pricessCategoriesNew()
 {
 
-    $ch = curl_init('http://shop.localhost/app_dev.php/product/showAll/');
+    $ch = curl_init('http://localhost/shop-backend/web/app_dev.php/product/showAll/');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $out = curl_exec($ch);
     $data = json_decode($out, true);
