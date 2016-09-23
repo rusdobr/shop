@@ -16,7 +16,7 @@
 	include("./cfg/general.inc.php");
 
 	//connect to database
-	db_connect(DB_HOST,DB_USER,DB_PASS) or die (db_error());
+	db_connect(DB_HOST,DB_USER,DB_PASS,DB_CHARSET) or die (db_error());
 	db_select_db(DB_NAME) or die (db_error());
 
 	//checking for authorized access

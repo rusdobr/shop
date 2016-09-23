@@ -17,7 +17,7 @@
 	include("./cfg/general.inc.php");
 
 	//connect 2 database
-	db_connect(DB_HOST,DB_USER,DB_PASS) or die (db_error());
+	db_connect(DB_HOST,DB_USER,DB_PASS,DB_CHARSET) or die (db_error());
 	db_select_db(DB_NAME) or die (db_error());
 
 	session_start();

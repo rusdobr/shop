@@ -8,10 +8,11 @@
 
 //	database functions :: MySQL
 
-function db_connect($host,$user,$pass) //create connection
+function db_connect($host,$user,$pass,$charset) //create connection
 {
 	$r = mysql_connect($host,$user,$pass);
 	if(preg_match('/^5\./',mysql_get_server_info($r)))db_query('SET SESSION sql_mode=0');
+    mysql_set_charset($charset, $r);
 	return $r;
 }
 

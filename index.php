@@ -51,7 +51,7 @@
 	}
 
 	//connect to the database
-	db_connect(DB_HOST,DB_USER,DB_PASS) or die (db_error());
+	db_connect(DB_HOST,DB_USER,DB_PASS,DB_CHARSET) or die (db_error());
 	db_select_db(DB_NAME) or die (db_error());
 
 	//get currency ISO 3 code
