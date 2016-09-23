@@ -21,7 +21,8 @@
 		}
 		else
 		{
-			$f = @fopen("./cfg/connect.inc.php","w");
+            $env = $_SERVER['HTTP_HOST'] == 'localhost' ? 'dev' : 'prod';
+			$f = @fopen("./cfg/connect.$env.inc.php","w");
 			$s = "<?php
 	//database connection settings
 
@@ -29,11 +30,10 @@
 	define('DB_USER', '".$_POST["db_user"]."'); // username
 	define('DB_PASS', '".$_POST["db_pass"]."'); // password
 	define('DB_NAME', '".$_POST["db_name"]."'); // database name
+	define('DB_CHARSET', '".$_POST["db_charset"]."'); // database charset
 	define('ADMIN_LOGIN', '".base64_encode($_POST["admin_login"])."'); //administrator's login
 	define('ADMIN_PASS', '".md5($_POST["admin_pass"])."'); //administrator's login
 
-	//database tables
-	include(\"./cfg/tables.inc.php\");
 
 ?>";
 ?><?php
@@ -114,6 +114,11 @@
 			alert("Пожалуйста, введите название базы данных");
 			return false;
 		}
+        if (document.form1.db_charset.value.length<1)
+        {
+            alert("Пожалуйста, введите кодировку");
+            return false;
+        }
 		if (document.form1.admin_login.value.length<1)
 		{
 			alert("Пожалуйста, введите логин администратора");
@@ -278,6 +283,10 @@
 	                          <td align=right>Имя базы данных:</td>
 	 <td><input type=text name=db_name<?php echo isset($_POST["db_name"]) ? " value=\"".$_POST["db_name"]."\"":"";?>></td>
 	</tr>
+    <tr>
+                               <td align=right>Кодировка базы данных:</td>
+        <td><input type=text name=db_charset<?php echo isset($_POST["db_charset"]) ? " value=\"".$_POST["db_charset"]."\"":"";?>></td>
+    </tr>
 
 
 
